@@ -1,8 +1,13 @@
-enter = input("sin in/registration ")
-if enter == "registration":
-    print("registration")
-    login = input("login: ")
-    password = input("password: ")
+while True:
+    enter = input("if sin in press 1/ if registration press 0 : ")
+    if enter == "0":
+        print("registration")
+        login = input("login: ")
+        password = input("password: ")
+        break
+    else:
+        print("try again")
+
 
 # jopa)))
 
@@ -20,7 +25,7 @@ while True:
 notes : list[dict] = []
 
 while True:
-    action = input("add/delite/edit/show: ")
+    action = input("add/delete/edit/show: ")
     if action == "add":
         note_title = input("title: ")
         note_content = input("content: ")
@@ -32,7 +37,7 @@ while True:
     if action == "show":
         for i in notes:
             print(i)
-    if action == "delite":
+    if action == "delete":
         for note, i in enumerate(notes):
             print(note,i)
         value = int(input("what delete: "))
