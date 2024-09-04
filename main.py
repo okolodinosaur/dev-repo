@@ -4,6 +4,7 @@ if enter == "registration":
     login = input("login: ")
     password = input("password: ")
 
+# jopa)))
 
 users = {login : password}
 
