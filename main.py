@@ -13,10 +13,13 @@ while True:
 
 users = {login : password}
 
+
 print("sing in....")
 
 while True:
-    if input("login: ") == login and input("password: ") == password:
+    user_login = input("login: ")
+    user_password = input("password: ")
+    if user_login == login and user_password == password:
         print("welcome")
         break
     else:
