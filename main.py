@@ -9,7 +9,7 @@ while True:
         print("try again")
 
 
-# jopa)))
+
 
 users = {login : password}
 
@@ -27,6 +27,8 @@ while True:
 
 notes : list[dict] = []
 
+
+
 while True:
     action = input("add/delete/edit/show: ")
     if action == "add":
@@ -39,16 +41,31 @@ while True:
         break
     if action == "show":
         for i in notes:
-            print(i)
+            print(i["title"],i["content"],i["status"])
     if action == "delete":
-        for note, i in enumerate(notes):
+        for i,note in enumerate(notes):
             print(note,i)
-        value = int(input("what delete: "))
-        notes.pop(value)
+        try:
+            value = int(input("what delete: "))
+            if 0 <= value <= len(notes)-1:
+                notes.pop(value)
+            else:
+                print("ne tot index")
+        except ValueError:
+            print("string")
     if action == "edit":
         for i, note in enumerate(notes):
-            print(i,note)
-        value = int(input("what edit: "))
+            print(note,i)
+        try:
+            value = int(input("what edit: "))
+            if 0 <= value <= len(notes)-1:
+                notes.pop(value)
+            else:
+                print("ne tot index")
+                continue
+        except ValueError:
+            print("string")
+            continue
         choise = input("title/content/status or all: ")
         if choise == "title":
             notes[value]["title"] = input("title: ")
