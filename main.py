@@ -1,5 +1,6 @@
+'''
 while True:
-    enter = input("if sin in press 1/ if registration press 0 : ")
+    enter = input("if sign in press 1/ if registration press 0 : ")
     if enter == "0":
         print("registration")
         login = input("login: ")
@@ -14,7 +15,7 @@ while True:
 users = {login : password}
 
 
-print("sing in....")
+print("sign in....")
 
 while True:
     user_login = input("login: ")
@@ -24,6 +25,7 @@ while True:
         break
     else:
         print("try again")
+'''
 
 notes : list[dict] = []
 
@@ -59,7 +61,7 @@ while True:
         try:
             value = int(input("what edit: "))
             if 0 <= value <= len(notes)-1:
-                notes.pop(value)
+                pass
             else:
                 print("ne tot index")
                 continue
