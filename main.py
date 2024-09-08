@@ -25,25 +25,55 @@ while True:
     else:
         print("try again")
 
-
 notes : list[dict] = []
-
+status = {1: "Complete", 2: "Progress", 3: "Backlog", 4: "Waiting"}
 
 
 while True:
     action = input("add/delete/edit/show: ")
     if action == "add":
-        note_title = input("title: ")
+        print("Type note name (up to 14 symbols)")
+        note_title = input()
+        if len(note_title) > 14:
+            print("Too long name")
+            continue
+        print("Type note content (up to 50 symbols)")
         note_content = input("content: ")
-        note_status = input("status: ")
-        note = {"title": note_title, "content": note_content, "status": note_status}
-        notes.append(note)
-    if action == "exit":
+        if len(note_content) > 50:
+            print("Too long content")
+            continue
+        print("choose note's status...")
+        try:
+            for key, value in status.items():
+                print(key, " ", value)
+            note_status_input = int(input())
+            if note_status_input == 1:
+                note_status = "Complete"
+            elif note_status_input == 2:
+                note_status = "Progress"
+            elif note_status_input == 3:
+                note_status = "Backlog"
+            elif note_status_input == 4:
+                note_status = "Waiting"
+            else:
+                print("wrong status...")
+                continue
+            note = {"title": note_title, "content": note_content, "status": note_status}
+            notes.append(note)
+        except ValueError:
+            print("error")
+    elif action == "exit":
         break
-    if action == "show":
-        for i in notes:
-            print(i["title"],i["content"],i["status"])
-    if action == "delete":
+    elif action == "show":
+        print("############################################################################################")
+        print("# INDEX ###    TITLE    ###                    CONTENT                       ### STATUS    #")
+        print("############################################################################################")
+        for idx, data in enumerate(notes):
+            title = data["title"][:14].ljust(14)
+            content = data["content"][:50].ljust(50)
+            status = data["status"].ljust(8)
+            print(f"    {idx:<2}    | {title} | {content} | {status} |")
+    elif action == "delete":
         for i,note in enumerate(notes):
             print(note,i)
         try:
@@ -54,7 +84,7 @@ while True:
                 print("ne tot index")
         except ValueError:
             print("string")
-    if action == "edit":
+    elif action == "edit":
         for i, note in enumerate(notes):
             print(note,i)
         try:
@@ -78,3 +108,5 @@ while True:
             notes[value]["title"] = input("title: ")
             notes[value]["content"] = input("content: ")
             notes[value]["status"] = input("status: ")
+    else:
+        print("Wrong command...\nTry again")
