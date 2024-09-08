@@ -1,4 +1,3 @@
-'''
 while True:
     enter = input("if sign in press 1/ if registration press 0 : ")
     if enter == "0":
@@ -25,7 +24,7 @@ while True:
         break
     else:
         print("try again")
-'''
+
 
 notes : list[dict] = []
 
