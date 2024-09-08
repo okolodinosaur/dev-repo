@@ -43,25 +43,15 @@ while True:
             print("Too long content")
             continue
         print("choose note's status...")
-        try:
-            for key, value in status.items():
+        for key, value in status.items():
                 print(key, " ", value)
+        try:
             note_status_input = int(input())
-            if note_status_input == 1:
-                note_status = "Complete"
-            elif note_status_input == 2:
-                note_status = "Progress"
-            elif note_status_input == 3:
-                note_status = "Backlog"
-            elif note_status_input == 4:
-                note_status = "Waiting"
-            else:
-                print("wrong status...")
-                continue
-            note = {"title": note_title, "content": note_content, "status": note_status}
-            notes.append(note)
         except ValueError:
-            print("error")
+            continue    
+        note_status = status.get(note_status_input)
+        note = {"title": note_title, "content": note_content, "status": note_status}
+        notes.append(note)
     elif action == "exit":
         break
     elif action == "show":
@@ -78,24 +68,24 @@ while True:
             print(note,i)
         try:
             value = int(input("what delete: "))
-            if 0 <= value <= len(notes)-1:
-                notes.pop(value)
-            else:
-                print("ne tot index")
         except ValueError:
-            print("string")
+            continue
+        if 0 <= value <= len(notes)-1:
+            notes.pop(value)
+        else:
+            print("ne tot index")        
+        print("string")
     elif action == "edit":
         for i, note in enumerate(notes):
             print(note,i)
         try:
             value = int(input("what edit: "))
-            if 0 <= value <= len(notes)-1:
-                pass
-            else:
-                print("ne tot index")
-                continue
         except ValueError:
-            print("string")
+            continue
+        if 0 <= value <= len(notes)-1:
+            pass
+        else:
+            print("ne tot index")
             continue
         choise = input("title/content/status or all: ")
         if choise == "title":
