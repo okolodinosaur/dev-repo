@@ -71,8 +71,8 @@ while True:
         for idx, data in enumerate(notes):
             title = data["title"][:14].ljust(14)
             content = data["content"][:50].ljust(50)
-            status = data["status"].ljust(8)
-            print(f"    {idx:<2}    | {title} | {content} | {status} |")
+            temp_status = data["status"].ljust(8)
+            print(f"    {idx:<2}    | {title} | {content} | {temp_status} |")
     elif action == "delete":
         for i,note in enumerate(notes):
             print(note,i)
