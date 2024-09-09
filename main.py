@@ -1,3 +1,20 @@
+def show_note(note : dict, idx : int):
+    title = note["title"][:14].ljust(14)
+    content = note["content"][:50].ljust(50)
+    temp_status = note["status"].ljust(8)
+    print(f"    {idx:<2}    | {title} | {content} | {temp_status} |")
+
+def show_header():
+    print("############################################################################################")
+    print("# INDEX ###    TITLE    ###                    CONTENT                       ### STATUS    #")
+    print("############################################################################################")
+
+def delete_note_by_index(notes : list[dict],i:int):
+    if 0 <= i <= len(notes)-1:
+        notes.pop(i)
+
+
+
 while True:
     enter = input("if sign in press 1/ if registration press 0 : ")
     if enter == "0":
@@ -7,8 +24,6 @@ while True:
         break
     else:
         print("try again")
-
-
 
 
 users = {login : password}
@@ -55,26 +70,19 @@ while True:
     elif action == "exit":
         break
     elif action == "show":
-        print("############################################################################################")
-        print("# INDEX ###    TITLE    ###                    CONTENT                       ### STATUS    #")
-        print("############################################################################################")
-        for idx, data in enumerate(notes):
-            title = data["title"][:14].ljust(14)
-            content = data["content"][:50].ljust(50)
-            temp_status = data["status"].ljust(8)
-            print(f"    {idx:<2}    | {title} | {content} | {temp_status} |")
+        show_header()
+        for idx, note in enumerate(notes):
+            show_note(note,idx)
     elif action == "delete":
+        show_header()
         for i,note in enumerate(notes):
-            print(note,i)
+            show_note(note,i)
         try:
             value = int(input("what delete: "))
         except ValueError:
+            print("index out of range")
             continue
-        if 0 <= value <= len(notes)-1:
-            notes.pop(value)
-        else:
-            print("ne tot index")        
-        print("string")
+        delete_note_by_index(notes,value)
     elif action == "edit":
         for i, note in enumerate(notes):
             print(note,i)
